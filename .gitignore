@@ -1,0 +1,33 @@
+# Local environments, settings, and secrets
+.venv/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Python and build output
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Source documents and generated research artifacts
+*.pdf
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+data/index/*
+!data/index/.gitkeep
+evals/results/*
+!evals/results/.gitkeep
+
+# Machine-specific files
+.DS_Store
+*.log
+logs/

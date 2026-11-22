@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Humans on Mars · Research</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/static/app.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#question">Skip to search</a>
+  <aside class="sidebar" aria-label="Research navigation">
+    <a class="brand" href="/" aria-label="Humans on Mars home"><span class="planet" aria-hidden="true"></span><span>Humans on Mars<small>A source-grounded research project</small></span></a>
+    <button class="new-search" id="new-search" type="button"><span aria-hidden="true">＋</span> New search</button>
+    <div class="sidebar-section"><p class="section-label">THIS SESSION</p><p class="muted empty-history" id="empty-history">Your searches will appear here.</p><nav id="history" aria-label="Recent searches"></nav></div>
+    <div class="collection"><p class="section-label">YOUR COLLECTION</p><p id="collection-count">Connecting to local collection…</p><p class="muted" id="collection-detail">Original PDFs stay on this computer.</p><details id="collection-details"><summary>Indexed documents</summary><ul id="document-list"></ul></details></div>
+    <p class="sidebar-footer">Local workspace<br><span>Searches stay in this tab until refreshed.</span></p>
+  </aside>
+  <main>
+    <header class="topbar"><span>Research workspace</span><span class="local-label">Local PDF search</span></header>
+    <div class="conversation" id="conversation">
+      <section class="welcome" id="welcome">
+        <div class="orbit" aria-hidden="true"><span></span></div>
+        <p class="eyebrow">EARTH TO MARS</p>
+        <h1>Follow your curiosity.<br>Find the evidence.</h1>
+        <p class="intro">Explore the journey to Mars through your research collection. Every passage leads back to its source.</p>
+        <div class="suggestions" aria-label="Example questions">
+          <button type="button" data-question="What happens before the crew departs Earth for Mars?">Leaving Earth<span>Launch, preparation and departure</span></button>
+          <button type="button" data-question="What would an ordinary day look like, including sleep, meals, exercise, duties and free time?">Life in transit<span>Daily routines aboard the spacecraft</span></button>
+          <button type="button" data-question="Why are water and hydrogen-rich materials considered for radiation shielding?">Protecting the crew<span>Radiation and shielding research</span></button>
+          <button type="button" data-question="Why does recycling water matter when packing food?">Living on supplies<span>Food, water and life support</span></button>
+        </div>
+      </section>
+      <section class="thread" id="thread" aria-label="Questions and retrieved evidence"></section>
+    </div>
+    <div class="composer-area">
+      <p class="status" id="status" role="status" aria-live="polite">Loading your collection…</p>
+      <form id="search-form" class="composer">
+        <label class="sr-only" for="question">Your research question</label>
+        <textarea id="question" name="question" rows="2" maxlength="2000" placeholder="Ask about the journey to Mars…" required disabled></textarea>
+        <div class="composer-actions">
+          <details class="search-options"><summary>Search options</summary><div class="option-fields">
+            <label for="source">Search in<select id="source"><option value="all">All indexed documents</option></select></label>
+            <label for="ranking">Search method<select id="ranking"><option value="page">Standard · full-page context</option><option value="context">Experimental ranking</option><option value="baseline">Original short passages</option></select></label>
+            <p>Experimental ranking changes result order and may miss useful evidence.</p>
+          </div></details>
+          <button class="submit" id="submit" type="submit" disabled>Search</button>
+        </div>
+      </form>
+      <p class="disclosure">Retrieved evidence, not generated answers. Each search is independent.</p>
+    </div>
+  </main>
+  <template id="result-template">
+    <article class="result-card">
+      <div class="result-meta"><span class="source-tag"></span><span class="page-label"></span></div>
+      <h3 class="source-title"></h3><p class="edition muted"></p>
+      <p class="passage"></p>
+      <div class="result-actions"><a class="pdf-link" target="_blank" rel="noopener noreferrer">Open original PDF</a><span class="printed-label muted"></span></div>
+      <details class="page-context"><summary>Read full page context</summary><pre></pre></details>
+      <details class="source-notes"><summary>Mission concept &amp; source notes</summary><div class="notes-content"></div></details>
+    </article>
+  </template>
+</body>
+</html>

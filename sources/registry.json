@@ -1,0 +1,438 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "source_id": "mars-001",
+      "filename": "Approaches To Humans-Mars Both Safe and Affordable.pdf",
+      "title": "Approaches To Humans-Mars Both Safe and Affordable",
+      "authors": [
+        "Dennis M. Bushnell",
+        "Robert Moses",
+        "Sang Choi"
+      ],
+      "publisher": "NASA",
+      "canonical_url": "https://ntrs.nasa.gov/citations/20220007320",
+      "publication_date": "2022-07-01",
+      "edition": "NASA/TM-20220007320",
+      "acquired_at": null,
+      "registered_on": "2026-11-19",
+      "local_path": "data/raw/Approaches To Humans-Mars Both Safe and Affordable.pdf",
+      "sha256": "c1c24c7e019413657006acd8856bbfb30a7f0329fc521d02dec68e047e298691",
+      "document_type": null,
+      "evidence_type": null,
+      "topics": [],
+      "reuse_terms": null,
+      "metadata_status": "needs_review",
+      "indexing_status": "not_indexed",
+      "supersedes": null,
+      "notes": "Sampled content and title pages inspected on 2026-11-21; identity matched to NTRS 20220007320. Authors follow the PDF; publication date follows the catalog (cover gives July 2022). Broad mission/settlement technology discussion includes speculative proposals, not demonstrated end-to-end architecture. Full scientific and reuse review pending; remote-file byte identity not checked."
+    },
+    {
+      "source_id": "mars-002",
+      "filename": "Mars-GRAM 2024 User Guide.pdf",
+      "title": "Mars Global Reference Atmospheric Model (Mars-GRAM) 2024: User Guide",
+      "authors": [
+        "H. L. Justh",
+        "K. L. Burns",
+        "S. Dutta",
+        "J. Hoffman"
+      ],
+      "publisher": "NASA",
+      "canonical_url": "https://ntrs.nasa.gov/citations/20240012934",
+      "publication_date": "2024-10-23",
+      "edition": "NASA/TM-20240012934; Mars-GRAM 2024",
+      "acquired_at": null,
+      "registered_on": "2026-11-19",
+      "local_path": "data/raw/Mars-GRAM 2024 User Guide.pdf",
+      "sha256": "6aa9d79efcf594cb276f8b4f7235b75d8225838e5736ecc26636daf90227c0f9",
+      "document_type": null,
+      "evidence_type": null,
+      "topics": [],
+      "reuse_terms": null,
+      "metadata_status": "needs_review",
+      "indexing_status": "not_indexed",
+      "supersedes": null,
+      "notes": "Title pages and contents sampled on 2026-11-21; identity matched to NTRS 20240012934. Authors follow the PDF; date follows the catalog (cover gives October 2024). Engineering atmospheric model guide, not a crew-health or ionizing-radiation protection guide. Kept separate from the 2021 edition; detailed differences, scientific and reuse review pending. Remote-file byte identity not checked."
+    },
+    {
+      "source_id": "mars-003",
+      "filename": "Mars-GRAM User Guide.pdf",
+      "title": "Mars Global Reference Atmospheric Model (Mars-GRAM): User Guide",
+      "authors": [
+        "H. L. Justh",
+        "A. M. Dwyer Cianciolo",
+        "J. Hoffman"
+      ],
+      "publisher": "NASA",
+      "canonical_url": "https://ntrs.nasa.gov/citations/20210023957",
+      "publication_date": "2021-11-10",
+      "edition": "NASA/TM-20210023957; November 2021",
+      "acquired_at": null,
+      "registered_on": "2026-11-19",
+      "local_path": "data/raw/Mars-GRAM User Guide.pdf",
+      "sha256": "be2914c1cc049db3dd99af96fa013f441b36cf9a31bf8dacec4f7495996271d8",
+      "document_type": null,
+      "evidence_type": null,
+      "topics": [],
+      "reuse_terms": null,
+      "metadata_status": "needs_review",
+      "indexing_status": "not_indexed",
+      "supersedes": null,
+      "notes": "Title pages and contents sampled on 2026-11-21; identity matched to NTRS 20210023957. Authors follow the PDF; date follows the catalog (cover gives November 2021). Engineering atmospheric model guide; retained as a distinct edition from Mars-GRAM 2024 without merging. Detailed differences, scientific and reuse review pending. Remote-file byte identity not checked."
+    },
+    {
+      "source_id": "mars-004",
+      "filename": "20170004604.pdf",
+      "title": "Risk of Adverse Health Outcomes and Decrements in Performance due to In-Flight Medical Conditions",
+      "authors": [
+        "Erik Antonsen"
+      ],
+      "publisher": null,
+      "canonical_url": "https://ntrs.nasa.gov/citations/20170004604",
+      "publication_date": "2017-01-01",
+      "edition": null,
+      "acquired_at": null,
+      "registered_on": "2026-11-21",
+      "local_path": "data/raw/20170004604.pdf",
+      "sha256": "71260e17660a4cdbd6232b739edc650aa4dd6164fee362c7196dff44b34168e2",
+      "document_type": "evidence_report",
+      "evidence_type": "review_and_risk_analysis",
+      "topics": [
+        "medical_care",
+        "crew_health",
+        "autonomy",
+        "evacuation"
+      ],
+      "reuse_terms": "NTRS: Work of the US Gov. Public Use Permitted.",
+      "metadata_status": "needs_review",
+      "indexing_status": "indexed_local_bm25",
+      "supersedes": null,
+      "notes": "79 pages. Title and contributing-author page inspected; authors field follows the single author in NTRS, not the full contributor list. Date is the NTRS catalog date; cover retains an unresolved public-release date placeholder. Sampled PDF pages 1-5 and 10-13. Original-order extraction preserves spaces better than coordinate-sorted extraction. Full review and current applicability pending. Identity matched by content and catalog metadata; remote-file byte identity was not checked.",
+      "printed_page_labels": {
+        "11": "11",
+        "32": "32"
+      },
+      "printed_page_labels_review": {
+        "reviewed_on": "2026-11-21",
+        "method": "Visual review of selected rendered pages only; other printed labels remain unverified. No embedded PDF PageLabels dictionary."
+      },
+      "extraction": {
+        "status": "text_extracted_sampled_prose_reviewed",
+        "manifest_path": "data/processed/mars-004/71260e17660a4cdbd6232b739edc650aa4dd6164fee362c7196dff44b34168e2/d084a3b4a6ab37f8f7dfaf2284f313ab1c5608c66eb8ba5d32c537b012089a70/manifest.json",
+        "extraction_id": "d084a3b4a6ab37f8f7dfaf2284f313ab1c5608c66eb8ba5d32c537b012089a70",
+        "reviewed_on": "2026-11-21",
+        "review_note": "docs/research/2026-11-21-radiation-medical-processing-and-coverage.md",
+        "quality_limitations": [
+          "Sampled prose only; tables and figures are not verified. Historical 2017 findings are not current medical policy."
+        ]
+      },
+      "index": {
+        "index_id": "2a33fce1bfc4708f1cff0c6ea5d0367f9da60fa31967c0c5b4d18a9594a41257",
+        "manifest_path": "data/index/mars-004/2a33fce1bfc4708f1cff0c6ea5d0367f9da60fa31967c0c5b4d18a9594a41257/manifest.json"
+      },
+      "mission_context": "2017 medical evidence/risk review; exploration needs and ISS/terrestrial examples, not a certified Mars medical system."
+    },
+    {
+      "source_id": "mars-005",
+      "filename": "20200003267.pdf",
+      "title": "Developmental Efforts of an Electrochemical Oxygen Recovery System for Advanced Life Support",
+      "authors": [
+        "Brittany R. Brown",
+        "Peter A. Curreri",
+        "Ellen M. Rabenberg",
+        "Jesus A. Dominguez",
+        "Lorlyn P. Reidy",
+        "Brian Dennis",
+        "Wilaiwan Chanmanee",
+        "Kenneth A. Burke"
+      ],
+      "publisher": null,
+      "canonical_url": "https://ntrs.nasa.gov/citations/20200003267",
+      "publication_date": "2020-07-12",
+      "edition": null,
+      "acquired_at": null,
+      "registered_on": "2026-11-21",
+      "local_path": "data/raw/20200003267.pdf",
+      "sha256": "7492f1ece7dff21daf7e0927cd6590508a4724755b5790cb4072690da10605c2",
+      "document_type": "conference_paper",
+      "evidence_type": "laboratory_experiment_and_technology_development",
+      "topics": [
+        "oxygen_recovery",
+        "life_support",
+        "carbon_dioxide",
+        "electrochemistry"
+      ],
+      "reuse_terms": "NTRS: Public Use Permitted.",
+      "metadata_status": "needs_review",
+      "indexing_status": "not_indexed",
+      "supersedes": null,
+      "notes": "12 pages; ICES-2020-74. Authors follow the PDF title page, including two not listed in NTRS metadata. Publication date follows NTRS. Sampled pages 1, 2, 8, 10, 11. Table structure, chemical notation, figures, and graph axes require review; technology-development results are not proof of an operational Mars life-support system. Full review pending. Identity matched by content and catalog metadata; remote-file byte identity was not checked."
+    },
+    {
+      "source_id": "mars-006",
+      "filename": "2208.00892v2.pdf",
+      "title": "Crewed Missions to Mars: Modeling the Impact of Astrophysical Charged Particles on Astronauts and Their Health",
+      "authors": [
+        "Dimitra Atri",
+        "Caitlin MacArthur",
+        "Sriram Devata",
+        "Konstantin Herbst",
+        "Dionysios Gakis",
+        "Shireen Mathur",
+        "Maria Villarreal-Gomez",
+        "Giulia Carla Bassani",
+        "Roberto Parisi",
+        "Azza Al Bakr",
+        "Tammy Witzens"
+      ],
+      "publisher": null,
+      "canonical_url": "https://arxiv.org/abs/2208.00892",
+      "publication_date": "2023-01-05",
+      "edition": "arXiv:2208.00892v2",
+      "acquired_at": null,
+      "registered_on": "2026-11-21",
+      "local_path": "data/raw/2208.00892v2.pdf",
+      "sha256": "dc28a96c2be6c1de707e77c693d75cc8a93cd823e9a804f07152f9e29e069654",
+      "document_type": "preprint",
+      "evidence_type": "numerical_simulation_and_literature_review",
+      "topics": [
+        "radiation",
+        "shielding",
+        "crew_health",
+        "model_limitations"
+      ],
+      "reuse_terms": null,
+      "metadata_status": "needs_review",
+      "indexing_status": "indexed_local_bm25",
+      "supersedes": null,
+      "notes": "65 pages. Local title page identifies v2 dated 5 Jan 2023; arXiv history agrees (v1: 1 Aug 2022). Publication_date records this version submission, not journal publication. arXiv comments say Under Review; peer-reviewed publication and license not verified. Sampled pages 1-3, 24, 27, 50; first-page affiliations/date interfere with sorted text, and numerical tables need structural extraction. Model assumptions must accompany dose claims. Full review pending. Identity matched by content and catalog metadata; remote-file byte identity was not checked.",
+      "printed_page_labels": {
+        "24": "24",
+        "44": "44"
+      },
+      "printed_page_labels_review": {
+        "reviewed_on": "2026-11-21",
+        "method": "Visual review of selected rendered pages only; other printed labels remain unverified. No embedded PDF PageLabels dictionary."
+      },
+      "extraction": {
+        "status": "text_extracted_sampled_prose_reviewed",
+        "manifest_path": "data/processed/mars-006/dc28a96c2be6c1de707e77c693d75cc8a93cd823e9a804f07152f9e29e069654/89ea88a5a59273e873f777fbd19bd57a452d83cecf8c1f4373df9375da493f10/manifest.json",
+        "extraction_id": "89ea88a5a59273e873f777fbd19bd57a452d83cecf8c1f4373df9375da493f10",
+        "reviewed_on": "2026-11-21",
+        "review_note": "docs/research/2026-11-21-retrieval-improvement-and-source-plan.md",
+        "quality_limitations": [
+          "Geometric spacing improves sampled prose; whole-document reading order and word accuracy remain unvalidated.",
+          "Tables, equations, figures, numerical units and cited-source accuracy require separate review."
+        ]
+      },
+      "index": {
+        "index_id": "e80e72829e120cec4798f57b9933863c949df0a1ff9d7bda1f2d368c53cb4703",
+        "manifest_path": "data/index/mars-006/e80e72829e120cec4798f57b9933863c949df0a1ff9d7bda1f2d368c53cb4703/manifest.json"
+      },
+      "processing_history": [
+        {
+          "extraction": {
+            "status": "text_extracted_sampled_prose_reviewed",
+            "manifest_path": "data/processed/mars-006/dc28a96c2be6c1de707e77c693d75cc8a93cd823e9a804f07152f9e29e069654/72e8cb3555d9f2f707e9e6109547bc5229b270cd4ad2b7c42eac171af1f289b4/manifest.json",
+            "extraction_id": "72e8cb3555d9f2f707e9e6109547bc5229b270cd4ad2b7c42eac171af1f289b4",
+            "reviewed_on": "2026-11-21",
+            "review_note": "docs/research/2026-11-21-radiation-medical-processing-and-coverage.md",
+            "quality_limitations": [
+              "Some lines contain joined words, impairing keyword recall; sampled pypdf layout mode did not improve spacing.",
+              "Numerical tables, figures, equations and cited-source accuracy are not verified."
+            ]
+          },
+          "index": {
+            "index_id": "cd8d9698073a6b64c536fc91151286ded78277c1474ec4440ace1303735bedea",
+            "manifest_path": "data/index/mars-006/cd8d9698073a6b64c536fc91151286ded78277c1474ec4440ace1303735bedea/manifest.json"
+          },
+          "superseded_on": "2026-11-21",
+          "reason": "Replace known joined-word extraction with geometrically spaced text; original outputs preserved."
+        }
+      ],
+      "mission_context": "arXiv v2 January 2023 radiation simulation/review; modeled shielding and health assumptions, not an approved vehicle design."
+    },
+    {
+      "source_id": "mars-007",
+      "filename": "ECLSS Does Not Exist in a Vacuum v9 (unlinked citations).pdf",
+      "title": "ECLSS Does Not Exist in a Vacuum: Integrated Analysis is Necessary to Inform System Architecture Decisions",
+      "authors": [
+        "Andrew C. Owens",
+        "Christopher A. Jones",
+        "Nicole E. Piontek",
+        "William M. Cirillo",
+        "Jordan J. Klovstad",
+        "Patrick R. Chai",
+        "Raymond G. Merrill",
+        "Chel Stromgren",
+        "Jason Cho"
+      ],
+      "publisher": null,
+      "canonical_url": "https://ntrs.nasa.gov/citations/20205001088",
+      "publication_date": null,
+      "edition": "ICES-2020-310; local filename v9",
+      "acquired_at": null,
+      "registered_on": "2026-11-21",
+      "local_path": "data/raw/ECLSS Does Not Exist in a Vacuum v9 (unlinked citations).pdf",
+      "sha256": "6de4c694b596d8c1246edc402de5efb9b3abb1e60a837e447c190f3b58c7a807",
+      "document_type": "conference_paper",
+      "evidence_type": "exploratory_system_modeling",
+      "topics": [
+        "life_support",
+        "water",
+        "food",
+        "spares",
+        "propulsion",
+        "mission_tradeoffs"
+      ],
+      "reuse_terms": null,
+      "metadata_status": "needs_review",
+      "indexing_status": "indexed_local_bm25",
+      "supersedes": null,
+      "notes": "12 pages. Title/author list match NTRS; paper header says ICES-2020-310 whereas catalog report field says CES-2020-310. Header names intended July 2020 conference; publication date and actual presentation status not established. PDF declares US Government work; NTRS reuse wording is narrower, so reuse_terms remains unresolved. Sampled pages 1-4, 10-11. Notional approximately 1000-day, four-crew conjunction-class mission including return, not outbound transit duration. Recommended first prose-retrieval source. Tables/plots need separate handling. Full review pending. Identity matched by content and catalog metadata; remote-file byte identity was not checked.",
+      "printed_page_labels": {
+        "2": "2",
+        "3": "3",
+        "4": "4",
+        "5": "5",
+        "6": "6",
+        "7": "7",
+        "8": "8",
+        "9": "9",
+        "10": "10",
+        "11": "11",
+        "12": "12"
+      },
+      "printed_page_labels_review": {
+        "reviewed_on": "2026-11-21",
+        "method": "Visual review of all 12 rendered page footers. PDF position 1 has no visible printed page number; positions 2-12 print 2-12. No embedded PDF PageLabels dictionary."
+      },
+      "extraction": {
+        "status": "text_extracted_sampled_prose_reviewed",
+        "manifest_path": "data/processed/mars-007/6de4c694b596d8c1246edc402de5efb9b3abb1e60a837e447c190f3b58c7a807/04fc015a01c9ab9a1fc2f2406cbea383624cc73b937c24b57d7fbecc4b76624b/manifest.json",
+        "extraction_id": "04fc015a01c9ab9a1fc2f2406cbea383624cc73b937c24b57d7fbecc4b76624b",
+        "reviewed_on": "2026-11-21",
+        "review_note": "docs/research/2026-11-21-page-preserving-extraction.md"
+      },
+      "index": {
+        "index_id": "2430341304bba82bed5c28903b90570fab3e4b5409e09e4814adaabc7e280353",
+        "manifest_path": "data/index/mars-007/2430341304bba82bed5c28903b90570fab3e4b5409e09e4814adaabc7e280353/manifest.json"
+      },
+      "mission_context": "Exploratory four-person approximately 1,000-day conjunction-class mission including return; not outbound travel time."
+    },
+    {
+      "publisher": "NASA",
+      "acquired_at": "2026-11-22T01:34:29.711077+00:00",
+      "registered_on": "2026-11-21",
+      "metadata_status": "needs_review",
+      "indexing_status": "indexed_local_bm25",
+      "supersedes": null,
+      "source_id": "mars-008",
+      "filename": "373665main_nasa-sp-2009-566.pdf",
+      "title": "Human Exploration of Mars Design Reference Architecture 5.0",
+      "authors": [
+        "Mars Architecture Steering Group"
+      ],
+      "editors": [
+        "Bret G. Drake"
+      ],
+      "canonical_url": "https://www.nasa.gov/wp-content/uploads/2015/09/373665main_nasa-sp-2009-566.pdf",
+      "download_url": "https://www.nasa.gov/wp-content/uploads/2015/09/373665main_nasa-sp-2009-566.pdf",
+      "publication_date": "2009-07",
+      "edition": "NASA/SP-2009-566; July 2009",
+      "document_type": "special_publication",
+      "evidence_type": "reference_architecture_and_engineering_trade_studies",
+      "topics": [
+        "mission_architecture",
+        "launch",
+        "transit",
+        "landing",
+        "prepositioning",
+        "ascent",
+        "return"
+      ],
+      "reuse_terms": null,
+      "printed_page_labels": {
+        "18": "4"
+      },
+      "mission_context": "Historical DRA 5.0 reference architecture, July 2009; proposed six-person long-stay mission with return, not a current approved flight plan.",
+      "notes": "100 PDF pages. Title page identifies group and editor; month-level date preserved. Sampled title/introduction/mission summary, PDF pp. 3, 15-18. This full report differs from NTRS 20090012109, a February 2009 presentation; that catalog is not assigned to this PDF. Reuse terms and detailed scientific/current applicability review remain pending.",
+      "local_path": "data/raw/373665main_nasa-sp-2009-566.pdf",
+      "sha256": "1b3f956984f527c73ef43d4da18a0207c56cfdc38dc2d84a0c158fb65b596833",
+      "printed_page_labels_review": {
+        "reviewed_on": "2026-11-21",
+        "method": "Visual review of selected rendered pages only; other printed labels not inferred."
+      },
+      "extraction": {
+        "status": "text_extracted_sampled_prose_reviewed",
+        "manifest_path": "data/processed/mars-008/1b3f956984f527c73ef43d4da18a0207c56cfdc38dc2d84a0c158fb65b596833/98909cbf6dca324309cbedfc84da828f57d6cfdf3068183d4a31ee9d905a539d/manifest.json",
+        "extraction_id": "98909cbf6dca324309cbedfc84da828f57d6cfdf3068183d4a31ee9d905a539d",
+        "reviewed_on": "2026-11-21",
+        "review_note": "docs/research/2026-11-21-retrieval-improvement-and-source-plan.md",
+        "quality_limitations": [
+          "Sampled prose only; diagrams, tables and reading order remain unvalidated. Mission assumptions are concept-specific."
+        ]
+      },
+      "index": {
+        "index_id": "4d43dc4f18033f25526f3baf8c3843221a5be9e6f843ac958cc411c030b035c2",
+        "manifest_path": "data/index/mars-008/4d43dc4f18033f25526f3baf8c3843221a5be9e6f843ac958cc411c030b035c2/manifest.json"
+      }
+    },
+    {
+      "publisher": "NASA",
+      "acquired_at": "2026-11-22T01:34:29.711077+00:00",
+      "registered_on": "2026-11-21",
+      "metadata_status": "needs_review",
+      "indexing_status": "indexed_local_bm25",
+      "supersedes": null,
+      "source_id": "mars-009",
+      "filename": "Overview of Crew Operations for Transit to Mars V5.pdf",
+      "title": "Overview of Crew Operations for Transit to Mars",
+      "authors": [
+        "Nicole Piontek",
+        "Clare Luckey"
+      ],
+      "canonical_url": "https://ntrs.nasa.gov/citations/20230012629",
+      "download_url": "https://ntrs.nasa.gov/api/citations/20230012629/downloads/Overview%20of%20Crew%20Operations%20for%20Transit%20to%20Mars%20V5.pdf",
+      "publication_date": null,
+      "edition": "AIAA ASCEND 2023; local NASA download V5",
+      "document_type": "conference_paper",
+      "evidence_type": "operations_concept_and_ISS_experience_review",
+      "topics": [
+        "crew_operations",
+        "crew_time",
+        "workload",
+        "maintenance",
+        "habitability",
+        "arrival_preparation"
+      ],
+      "reuse_terms": "NTRS: Work of the US Gov. Public Use Permitted.",
+      "printed_page_labels": {
+        "3": "3",
+        "4": "4"
+      },
+      "mission_context": "SAC21 notional 850-day mission: four travel, two land for 30 sols and two remain in orbit; distinct from DRA 5.0 and ECLSS study assumptions.",
+      "notes": "11 PDF pages. Authors/title matched content and NASA catalog; publication date not supplied by catalog, so remains null (2023 conference context recorded separately). Sampled PDF pp. 1-5, 8. Table 1 on PDF p. 4 reproduces ISS workday guidelines, not an approved Mars schedule; individual tasking and detailed interior layout are not established. Catalog technical review NASA Peer Committee does not establish an operationally validated mission.",
+      "local_path": "data/raw/Overview of Crew Operations for Transit to Mars V5.pdf",
+      "sha256": "6697bacbccdc266bb24ca21a85f987243221d73215d6ce6fd8faa8ff160b1c35",
+      "printed_page_labels_review": {
+        "reviewed_on": "2026-11-21",
+        "method": "Visual review of selected rendered pages only; other printed labels not inferred."
+      },
+      "extraction": {
+        "status": "text_extracted_sampled_prose_reviewed",
+        "manifest_path": "data/processed/mars-009/6697bacbccdc266bb24ca21a85f987243221d73215d6ce6fd8faa8ff160b1c35/7f7d07acbd4fb9ce0a2ad18bb5743ea190de021a2f58988811c6de996a4a097f/manifest.json",
+        "extraction_id": "7f7d07acbd4fb9ce0a2ad18bb5743ea190de021a2f58988811c6de996a4a097f",
+        "reviewed_on": "2026-11-21",
+        "review_note": "docs/research/2026-11-21-retrieval-improvement-and-source-plan.md",
+        "quality_limitations": [
+          "Sampled prose only; diagrams, tables and reading order remain unvalidated. Mission assumptions are concept-specific."
+        ]
+      },
+      "index": {
+        "index_id": "03a4277278bce91294ee38a9e46c785113f845a403a5a1e67cfdbd7c0a054971",
+        "manifest_path": "data/index/mars-009/03a4277278bce91294ee38a9e46c785113f845a403a5a1e67cfdbd7c0a054971/manifest.json"
+      }
+    }
+  ]
+}

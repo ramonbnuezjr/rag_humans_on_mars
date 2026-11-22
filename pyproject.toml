@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "humans-on-mars"
+version = "0.1.0"
+description = "A source-grounded RAG research project about humans on Mars"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = []
+
+[project.optional-dependencies]
+extraction = ["pypdf==6.21.4"]
+extraction_spacing = ["pypdf==6.21.4", "pdfplumber==0.11.8", "pdfminer.six==20251107"]
+
+[project.scripts]
+mars-rag = "mars_rag.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+mars_rag = ["web_static/*.html", "web_static/*.css", "web_static/*.js"]
