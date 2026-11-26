@@ -134,3 +134,7 @@ The register contains nine PDFs, including two distinct Mars-GRAM editions. Five
 Use one repository for this project; `coding_projects` remains a parent directory. See [the contribution workflow](docs/contributing.md) for a first branch and pull request. Do not publish raw PDFs without reviewing their reuse terms. No code license has been selected yet; choose one before public release if you want others to reuse the code.
 
 Start with [the architecture](docs/architecture.md), [source policy](docs/source_policy.md), and [current status](status.md).
+
+## Project standards
+
+[AGENTS.md](AGENTS.md) is the short entry point for assistants. The [standards index](standards/README.md) selects scoped coding, security and IAM rules, with source references read only as needed. The [adoption decision](docs/decisions/2026-11-25-project-standards.md) records owner choices, preservation of existing safeguards and deferred upgrades. Adoption does not add development tools, authentication, external providers or a new Python baseline.

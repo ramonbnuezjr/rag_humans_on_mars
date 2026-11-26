@@ -1,3 +1,9 @@
+# Archived discussion handoff
+
+Historical input only, not active repository instructions. The owner-approved decisions and adopted rules supersede the original proposals. See [the adoption record](../2026-11-25-project-standards.md). The original text follows unchanged.
+
+---
+
 # Handoff: IAM and coding best practices for rag_humans_on_mars
 
 Written 2026-11-25 in a Claude Code session, for discussion in Codex.

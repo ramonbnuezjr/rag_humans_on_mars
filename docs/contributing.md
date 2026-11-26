@@ -46,6 +46,8 @@ Thirty-four software tests passed on 2026-11-22, covering extraction, indexing, 
 
 ## Shared assistant instructions
 
+Start with [AGENTS.md](../AGENTS.md) and the [standards index](../standards/README.md); detailed rules have one authoritative home. Follow the scoped coding, security and IAM rules applicable to the change. Tool/runtime migrations and dependency additions are explicit decisions, not prerequisites silently introduced by the standards. See [the adoption record](decisions/2026-11-25-project-standards.md).
+
 `AGENTS.md` is the actual file. `CLAUDE.md` is a relative symbolic link to `AGENTS.md`, so both entry points read the same instructions. Edit `AGENTS.md` directly; do not replace the link with a copy. Git can track the link. A Windows checkout may require symlink support; with `core.symlinks=false`, Git checks it out as a small text file containing the target path instead.
 
 Check locally with `ls -l CLAUDE.md` and `readlink CLAUDE.md`. The expected link target is `AGENTS.md`.

@@ -1,12 +1,14 @@
 # Project status
 
-Updated: 2026-11-24 (America/New_York).
+Updated: 2026-11-25 (America/New_York).
 
 ## Stage
 
 Local research UI and evidence retrieval. Nine original PDFs are registered; five are indexed, containing 267 pages and 993 page-bounded passages. Browser and CLI search work for one source or all registered indexes. A minimal chat-style local UI is implemented; generated answers, an insufficient-evidence classifier and voice are not. No embedding/generation provider is configured.
 
 ## Latest completed work
+
+- Adopted [scoped project standards](standards/README.md) after owner agreement: short AGENTS entry point, canonical coding/security/IAM rules, linked primary references and conditional future provider/remote requirements. Preserved existing work in checkpoint `f708e22`; adoption is on `feature/project-standards`. [Decision/migration record](docs/decisions/2026-11-25-project-standards.md) maps every former safeguard and archives the original handoff before template retirement. No app behavior, tooling, dependency, authentication or Python-baseline change is part of adoption. Python support and credential lifecycle details remain separate follow-ups.
 
 - Recovered a confirmed port-8765 outage on 2026-11-24 using a detached local server process with ignored startup log/PID files. The explicit crew-composition diagnostic question works again, returning five passages led by DRA PDF p. 81. These offline failures could not reach the diagnostic endpoint and are documented in the [outage record](docs/research/2026-11-24-server-outage.md), not represented as captured log entries. Why the previous process stopped is unconfirmed. No automatic startup/restart service or offline error queue was added.
 
