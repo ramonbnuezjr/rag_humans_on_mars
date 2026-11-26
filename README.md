@@ -14,6 +14,8 @@ From the project root:
 
 Open **http://127.0.0.1:8765** in your browser. Stop the server with **Ctrl+C**. If that port is occupied, use `.venv/bin/mars-rag serve --port 8766`. Without installation, `PYTHONPATH=src /opt/homebrew/bin/python3.11 -m mars_rag serve` also works.
 
+Keep the terminal/server running while using the app. A loaded browser tab alone does not keep the backend alive. If searches report “Failed to fetch” and errors cannot be saved, check server availability first; offline requests cannot reach the local diagnostic log. A detached process was used for recovery on 2026-11-24, but automatic startup/restart and offline error queueing are not implemented. See [outage and recovery](docs/research/2026-11-24-server-outage.md).
+
 Type a question and press **Search** or **Enter**; **Shift+Enter** adds a line. Example questions are provided. Results show exact retrieved passages, source titles/editions, PDF page references, original-PDF links and expandable complete-page context. Source notes identify mission assumptions, evidence type and review limitations. Search options let you choose one indexed source and explicitly enable experimental ranking; the current page-context search remains the default.
 
 This is an evidence-search interface, not generated chat. Every question is an independent search; earlier questions are not supplied as context. Recent searches exist only in the current tab's memory and disappear on refresh. **New search** clears the visible thread and cancels an in-flight request, retaining the tab's recent-search shortcuts. No-match results do not establish insufficient evidence; read the underlying sources before drawing conclusions.
@@ -24,7 +26,9 @@ UI failures automatically write to [logs/ui-errors.jsonl](logs/ui-errors.jsonl),
 
 ## Research questions
 
-The intended research loop is **ask → assess evidence coverage → identify gaps → research those gaps → reassess**. The owner needs to know whether evidence supports a complete answer, only part of it, or is insufficient. This coverage assessment, a research-gap register, human feedback and calibrated confidence indicators are **planned**, not implemented. Missing top-five results must not be mistaken for proof that the collection lacks information. See [lessons learned and owner requirements](docs/lessons_learned.md).
+The intended research loop is **ask → assess evidence coverage → identify gaps → research those gaps → reassess**. The owner needs to know whether evidence supports a complete answer, only part of it, or is insufficient. **Manual question-level feedback is implemented:** after a successful search, choose Fully, Partially, Not at all or Unsure, optionally explain what is missing, and click Save review. The saved-review summary shows latest judgments and five recent reviewed searches. Changing and saving a rating retains its history while counting that search once. A fresh search creates a separate review opportunity. Counts describe reviewed searches, not accuracy or proof of progress; compare the same questions and source versions over time.
+
+Feedback intentionally stores the question and note, rating, time, source filter, corpus/index references, returned page/chunk IDs and retrieval code hash in local `feedback/reviews.sqlite3`, excluded from Git. It does not copy PDF passage text. Unsaved questions are not retained in the review database. Automatic coverage judgments, a research-gap register, passage-level ratings and calibrated confidence indicators remain **planned**. Missing top-five results must not be mistaken for proof that the collection lacks information. See [feedback verification](docs/research/2026-11-22-evidence-feedback.md) and [lessons learned](docs/lessons_learned.md).
 
 - How could people travel to Mars and land safely?
 - What constraints do radiation, atmosphere, dust, temperature, and gravity impose?
@@ -115,6 +119,7 @@ Run `.venv/bin/mars-rag evaluate all --eval-set ranking-validation.jsonl` to rep
 | `docs/` | Architecture, source policy, and contribution workflow |
 | `docs/lessons_learned.md` | Consolidated examples, learning and owner decisions; implemented behavior is separated from proposals |
 | `logs/` | Local rotating UI diagnostics; excluded from Git |
+| `feedback/` | Local SQLite evidence reviews and signing key; excluded from Git |
 | `AGENTS.md`, `CLAUDE.md` | One instruction file, with `CLAUDE.md` symlinked to `AGENTS.md` |
 | `status.md` | Current state, decisions, and next actions |
 

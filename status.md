@@ -1,12 +1,22 @@
 # Project status
 
-Updated: 2026-11-22 (America/New_York).
+Updated: 2026-11-24 (America/New_York).
 
 ## Stage
 
 Local research UI and evidence retrieval. Nine original PDFs are registered; five are indexed, containing 267 pages and 993 page-bounded passages. Browser and CLI search work for one source or all registered indexes. A minimal chat-style local UI is implemented; generated answers, an insufficient-evidence classifier and voice are not. No embedding/generation provider is configured.
 
 ## Latest completed work
+
+- Recovered a confirmed port-8765 outage on 2026-11-24 using a detached local server process with ignored startup log/PID files. The explicit crew-composition diagnostic question works again, returning five passages led by DRA PDF p. 81. These offline failures could not reach the diagnostic endpoint and are documented in the [outage record](docs/research/2026-11-24-server-outage.md), not represented as captured log entries. Why the previous process stopped is unconfirmed. No automatic startup/restart service or offline error queue was added.
+
+- Completed the [two-question diagnosis](docs/research/2026-11-24-two-question-diagnosis.md). Both saved top-five result sets reproduce exactly. Selection evidence on medical PDF p. 15/DRA p. 81 ranks 397/384; lunar-testing evidence on DRA p. 90 ranks 34. Rare incidental words drive irrelevant matches; cost wording is unmatched. Explicit diagnostic queries retrieve useful existing pages first, while current experimental ranking still misses the principal targets for the original questions. Owned unindexed broad review p. 12 provides a depot lead, not a verified cost comparison. Specific selection tests and total lunar-versus-Earth cost remain candidate coverage gaps. Originals verified; no app, ranking, index, registry, ratings or collection changes made. Recommended next: a bounded, inspectable query-handling experiment with regression checks before source acquisition.
+
+- Moved the evidence review survey after all returned passages on 2026-11-23, so assessment follows reading. Updated its wording and usage notes. Crew-selection and lunar-departure retrieval misses remain open; this changes placement only.
+
+- Recorded [owner review notes](docs/research/2026-11-22-owner-review-notes.md): move the completeness prompt after the evidence (pending), and investigate two owner-rated Not at all results about crew selection and Moon departure infrastructure/cost. Browser placement and saved judgments were inspected directly. No placement/ranking fixes, additional papers or rating changes were made in this notes-only follow-up.
+
+- Implemented owner-requested question-level feedback: Fully / Partially / Not at all / Unsure, optional note, explicit save confirmation and persistent local review summary. Signed search snapshots preserve evidence references and retrieval versions; edits retain history, retries do not double-count, and latest judgments count once per search. Questions/notes are intentionally saved locally only on review submission; the SQLite store is ignored by Git. Thirty-four tests pass plus browser save/revise/retry/reload checks using an isolated synthetic collection. See [feedback verification](docs/research/2026-11-22-evidence-feedback.md). Automated coverage, confidence, gap tracking and ranking adaptation remain unimplemented.
 
 - Saved the [2026-11-22 project checkpoint](docs/research/2026-11-22-project-checkpoint.md), updated current architecture/source/evaluation/contribution guidance, and consolidated learning. Final local verification: 31 tests plus Python/JavaScript syntax checks pass; nine PDFs registered, five indexed. PDFs, generated outputs, diagnostics and environments remain outside Git.
 
@@ -73,7 +83,7 @@ The realistic evaluation intentionally exits 1 while expected evidence targets a
 1. Review three actual result pairs: integrated-design miss, maintenance-delay regression and mission-assumption success. Record acceptable support/qualifications before further tuning. Keep the original ranking with full-page context as default; collect fresh independent review questions before considering promotion of experimental reranking.
 2. Review source-specific mission assumptions and adjacent pages; validate only the numerical tables needed for selected questions. Improve metadata/reuse records and verify contemporary evidence before current medical or safety claims.
 3. Resolve remaining coverage gaps selectively: detailed interior layout, individual duties and actual Mars daily schedules remain unestablished; puncture repair procedures and governance lack dedicated support. Inspect owned sources before acquiring more.
-4. Define and review a question-level evidence-coverage rubric and research-gap record using the crew-selection example. Include human judgments of relevance and completeness, mission assumptions, citations and checks for retrieval misses. No automatic classifier, feedback storage or numerical confidence exists yet.
+4. Use the new review controls on a small set of real questions to define a question-level coverage rubric and research-gap record, starting with crew selection. Include mission assumptions, citations and checks for retrieval misses. Manual feedback storage is implemented; automatic classification and numerical confidence are not. Compare repeated questions and evidence versions, not changing aggregate counts alone.
 5. Choose answer generation/provider and data-transfer boundaries after evidence retrieval is sufficiently reliable. Evaluate citation support, coverage and uncertainty before generated answers or voice; the retrieval-only local UI is already implemented.
 
 ## Earlier records

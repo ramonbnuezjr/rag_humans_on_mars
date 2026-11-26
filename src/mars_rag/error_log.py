@@ -7,7 +7,7 @@ import threading
 import uuid
 
 
-OPERATIONS = {"search", "collection", "pdf", "request", "browser"}
+OPERATIONS = {"search", "collection", "pdf", "request", "browser", "feedback"}
 CATEGORIES = {"http_error", "network", "unreadable_response", "javascript", "unexpected"}
 
 

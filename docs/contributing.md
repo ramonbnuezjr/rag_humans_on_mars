@@ -42,7 +42,7 @@ PYTHONPATH=src .venv/bin/python -m unittest discover -s tests
 node --check src/mars_rag/web_static/app.js
 ```
 
-Thirty-one software tests passed on 2026-11-22, covering extraction, indexing, HTTP routes and local diagnostic logging. Install the optional extraction dependencies before running the synthetic-PDF suite; HTTP integration tests need permission to bind loopback sockets. Node is only needed for the optional JavaScript syntax check, not to run the UI. See [test details](../tests/README.md). Draft research questions and agent-reviewed retrieval checks are not independent answer-quality evaluations.
+Thirty-four software tests passed on 2026-11-22, covering extraction, indexing, HTTP routes, local diagnostic logging and persistent evidence reviews. Install the optional extraction dependencies before running the synthetic-PDF suite; HTTP integration tests need permission to bind loopback sockets. Node is only needed for the optional JavaScript syntax check, not to run the UI. See [test details](../tests/README.md). Draft research questions and agent-reviewed retrieval checks are not independent answer-quality evaluations.
 
 ## Shared assistant instructions
 

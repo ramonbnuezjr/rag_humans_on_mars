@@ -162,6 +162,73 @@ class WebTests(unittest.TestCase):
         self.assertEqual(len(events), 21)
         self.assertEqual(len({event["error_id"] for event in events}), 21)
 
+    def search_receipt(self, question="second"):
+        status, _, body = self.request("/api/search", {"question": question})
+        self.assertEqual(status, 200)
+        return json.loads(body)["review_receipt"]
+
+    def test_feedback_persistence_provenance_updates_and_retry(self):
+        import sqlite3
+        from mars_rag.feedback import FeedbackStore
+        receipt = self.search_receipt()
+        self.assertEqual(receipt["snapshot"]["question"], "second")
+        self.assertEqual(receipt["snapshot"]["evidence"][0]["pdf_page"], 2)
+        self.assertTrue(receipt["snapshot"]["corpus"])
+        self.assertEqual(len(receipt["snapshot"]["retrieval_code_sha256"]), 64)
+        payload = {"receipt": receipt, "rating": "partially", "note": "Need crew screening criteria."}
+        status, _, body = self.request("/api/feedback", payload)
+        self.assertEqual(status, 200)
+        self.assertTrue(json.loads(body)["saved"])
+        self.assertEqual(json.loads(self.request("/api/feedback", payload)[2]), json.loads(body))
+        store = FeedbackStore(self.root)  # New instance reuses disk state and signing key.
+        self.assertEqual(store.summary()["counts"]["partially"], 1)
+        payload["rating"] = "fully"
+        store.save(payload)
+        summary = json.loads(self.request("/api/feedback/summary")[2])
+        self.assertEqual(summary["total"], 1)
+        self.assertEqual((summary["counts"]["fully"], summary["counts"]["partially"]), (1, 0))
+        self.assertEqual(summary["recent"][0]["note"], payload["note"])
+        with sqlite3.connect(str(store.path)) as db:
+            self.assertEqual(db.execute("SELECT COUNT(*) FROM reviews").fetchone()[0], 2)
+            snapshot = json.loads(db.execute("SELECT snapshot FROM reviews LIMIT 1").fetchone()[0])
+        self.assertEqual(snapshot, receipt["snapshot"])
+        self.assertNotIn("passage", snapshot["evidence"][0])
+        self.assertEqual(self.request("/feedback/reviews.sqlite3")[0], 404)
+
+    def test_feedback_validation_tampering_and_origins(self):
+        import copy
+        receipt = self.search_receipt()
+        payload = {"receipt": receipt, "rating": "unsure", "note": ""}
+        for bad in (dict(payload, rating=""), dict(payload, rating=[]), dict(payload, note="x" * 2001),
+                    dict(payload, note=None), dict(payload, extra="not allowed"), dict(payload, receipt={})):
+            self.assertEqual(self.request("/api/feedback", bad)[0], 400)
+        tampered = copy.deepcopy(payload)
+        tampered["receipt"]["snapshot"]["question"] = "Invented question"
+        self.assertEqual(self.request("/api/feedback", tampered)[0], 400)
+        tampered["receipt"]["signature"] = "é" * 64
+        self.assertEqual(self.request("/api/feedback", tampered)[0], 400)
+        self.assertEqual(self.request("/api/feedback", payload, headers={"Origin": "https://example.com"})[0], 403)
+        self.assertEqual(json.loads(self.request("/api/feedback/summary")[2])["total"], 0)
+
+    def test_feedback_no_match_unsure_and_storage_failure(self):
+        import sqlite3
+        from mars_rag.feedback import FeedbackStore
+        receipt = self.search_receipt("platypus")
+        self.assertEqual(receipt["snapshot"]["evidence"], [])
+        for rating in ("fully", "partially", "not_at_all", "unsure"):
+            self.assertEqual(self.request("/api/feedback", {"receipt": receipt, "rating": rating, "note": ""})[0], 200)
+        with patch.object(FeedbackStore, "save", side_effect=sqlite3.OperationalError("PRIVATE")):
+            status, _, body = self.request("/api/feedback", {"receipt": receipt, "rating": "fully", "note": "PRIVATE"})
+        self.assertEqual(status, 503)
+        self.assertNotIn(b"PRIVATE", body)
+        self.assertIn("could not be saved", json.loads(body)["error"])
+        self.assertNotIn("PRIVATE", (self.root / "logs/ui-errors.jsonl").read_text())
+        with patch.object(FeedbackStore, "receipt", side_effect=sqlite3.OperationalError("PRIVATE")):
+            status, _, body = self.request("/api/search", {"question": "second"})
+        self.assertEqual(status, 200)
+        self.assertTrue(json.loads(body)["results"])
+        self.assertIsNone(json.loads(body)["review_receipt"])
+
 
 if __name__ == "__main__":
     unittest.main()

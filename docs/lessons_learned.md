@@ -17,13 +17,13 @@ Started: 2026-11-22. This is a learning record, not a scientific review of Mars 
 
 ## Owner ideas recorded: confidence and human feedback
 
-Status: proposed, not implemented. No confidence percentage, feedback buttons or automatic learning currently exist.
+Status: question-level human feedback is now implemented. Automatic coverage assessment, passage-level ratings, confidence percentages and automatic learning remain proposed. See [implementation and verification](research/2026-11-22-evidence-feedback.md).
 
 The owner clarified that **whether the collection contains enough evidence for a complete answer is a central requirement**, not a secondary concern. Passage relevance alone is insufficient. Assess question-level coverage as well as relevance, source quality and mission applicability. A highly relevant passage may support only one part of a question.
 
 The current BM25 score is a ranking value, not a probability. Converting it to a percentage or normalizing the top result to 100% would not establish correctness. Even several agreeing passages may repeat one source or describe incompatible mission concepts.
 
-A small feedback mechanism could let the owner mark each passage **directly relevant**, **partially relevant** or **not relevant**, with an optional note. Feedback should preserve the exact question, source/page/chunk IDs, index version and ranking version so a later comparison is reproducible. This would intentionally retain question text and needs a separate explicit storage decision; the current error log excludes it. Query-level feedback could separately record whether the set of passages addresses the question sufficiently.
+The owner requested an in-app choice rather than relying on chat-only feedback. Each successful search now offers **Fully**, **Partially**, **Not at all** or **Unsure**, plus an optional note. Save review intentionally persists the question and note with returned source/page/chunk identifiers, corpus/index references and retrieval code hash. Unsaved questions are not stored in the review database. PDF text is not copied. Error logs still exclude questions. Per-passage relevance controls remain proposed.
 
 Initial feedback should build a reviewed evaluation set and record judgments about those specific question/passage pairs. It should not silently change global ranking or make a scientific claim more certain. Conflicting judgments and changed questions should remain visible. Any ranking change should be tested against separate cases before promotion.
 
@@ -35,9 +35,15 @@ Before treating a failed answer as a collection gap, check whether relevant evid
 
 Proposed feedback should capture both passage relevance and whether the evidence set answers the question completely, partially or inadequately. A research-gap record should retain the question, mission scope, supporting source/page references, unanswered parts, retrieval checks performed, candidate evidence needs and review status. Distinguish an owner-confirmed gap from an automated suggestion. A new source should trigger reassessment, not automatically close the gap.
 
-Recommended next design step: define and review the coverage rubric and gap-record format using concrete examples, with human feedback. Automated assessment, feedback persistence, numerical confidence and automatic source acquisition remain unimplemented. Any numerical confidence later needs calibration against reviewed coverage judgments as well as a clear statement of what probability it represents.
+Next use the implemented review controls on concrete questions to define the coverage rubric and gap-record format. Revisions persist, repeat submissions of the same choice/note for the same search do not create duplicate judgments, and the summary counts the latest rating per search. A fresh search is a new trial. User assessments are not independent scientific validation; changes in the mix of questions can change totals without improving retrieval. Comparing the same questions, mission scope and evidence versions is necessary to assess direction. Automated assessment, numerical confidence and automatic source acquisition remain unimplemented. Any numerical confidence later needs calibration against reviewed coverage judgments and a clear statement of what probability it represents.
 
 ## Supporting project records
+
+A repeated [server outage on 2026-11-24](research/2026-11-24-server-outage.md) prevented both search and its error reporting. Confirmed no listener on port 8765; the termination cause is unknown. Recovery used a detached local process rather than another attached foreground tool session. Subsequent browser retry succeeded. This is operational recovery, not a retrieval improvement or an automatic restart service. Failures that cannot reach the diagnostic server are not present in its log and must not be claimed as captured.
+
+On 2026-11-24 a [two-question diagnosis](research/2026-11-24-two-question-diagnosis.md) reproduced both owner misses exactly and showed why more PDFs alone would not fix them. Selection/composition evidence already existed at ranks 397 and 384; lunar-testing evidence was at rank 34. Rare words in unrelated contexts (chosen radiation cutoffs, launching through radiation belts) and incidental words such as “might” dominated the results. Clear diagnostic wording returned the relevant pages first without changing code. This proves an intent/terminology retrieval limitation on these cases, not a general fix or complete evidence. Missing selection procedures and a verified lunar-departure cost comparison remain separate research needs. The existing experimental ranking also misses the key targets for the original wording.
+
+Owner testing found that placing the review form before the evidence interrupts reading. On 2026-11-23 the form was moved below all retrieved passages, following the flow question, evidence, then review. Two saved **Not at all** reviews concern crew selection and lunar departure infrastructure/costs. Their notes clarify the information need but do not prove the collection lacks the answer. Those retrieval issues remain open. See [owner review notes](research/2026-11-22-owner-review-notes.md). Capturing feedback and improving retrieval are separate milestones.
 
 - [Retrieval ranking, comparison and validation](research/2026-11-21-ranking-review-and-comparison.md)
 - [Local UI implementation and verification](research/2026-11-21-local-research-ui.md)

@@ -17,13 +17,17 @@ Keep collection, extraction, indexing, retrieval, and answer generation separate
 | Answer generation | Question and retrieved passages | Evidence-grounded answer with citations | Planned |
 | Evaluation | Provisional questions and expected evidence | Top-k evidence checks | Eleven earlier checks plus twelve realistic draft questions; gaps unscored; answer evaluation not implemented |
 | Evidence coverage and research gaps | Question, mission scope, evidence and review | Supported/partial/insufficient assessment and specific evidence needs | Owner requirement recorded; not implemented |
-| Human feedback and confidence | Reviewed relevance and coverage judgments | Versioned feedback and eventually calibrated estimates | Proposed; no buttons, persistent feedback or numerical confidence |
+| Human feedback and confidence | Owner question-level coverage judgments | Persistent reviews with signed retrieval snapshots and latest-rating summary | Manual feedback implemented; no automatic confidence or learning |
 
 ## Intended evidence-coverage loop
 
 The owner prioritizes knowing whether the available evidence can answer a question completely. The planned workflow is ask, assess coverage, identify gaps, research those gaps and reassess. A relevance score alone does not satisfy this requirement. Define the question's parts and applicable mission concept; cite support for each part, expose contradictions and record what remains unsupported. “Supported” must be relative to that scope and reviewed evidence, not a guarantee of exhaustive scientific knowledge.
 
 A failed retrieval must be investigated before declaring a collection gap. Relevant material may already exist in extracted text but rank below the displayed results. Proposed gap records should distinguish retrieval misses, candidate collection gaps and owner-reviewed gaps, retain evidence/version references and specify what additional evidence would help. Passage-level relevance and question-level coverage feedback serve different purposes. No automatic downloads or ranking changes follow from feedback today. Numerical confidence requires a defined target, reviewed cases and separate calibration/testing; BM25 scores are not coverage probabilities.
+
+## Local human feedback
+
+Successful HTTP search responses include an HMAC-signed snapshot of the exact question, selected corpus/index references, returned page/chunk/provenance identifiers and retrieval code hash. The signing key is generated locally in ignored `feedback/reviews.sqlite3`; unsigned or altered snapshots are rejected. Search text is persisted only when the owner saves a review. SQLite transactions store rating revisions without PDF passage text. A duplicate retry with the same search/rating/note is idempotent. Summary counts use only each search's latest rating; new searches remain separate trials. GET `/api/feedback/summary` returns counts and five recent owner reviews, while POST `/api/feedback` saves one review. Existing loopback/host/origin checks apply. A storage failure preserves valid search results and reports unavailable reviewing; failed saves keep the form's selections for retry. Controls and history are documented in [feedback verification](research/2026-11-22-evidence-feedback.md).
 
 ## Evidence record
 

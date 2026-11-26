@@ -99,6 +99,67 @@ function resultCard(result) {
   notes.append(provenance);
   return fragment;
 }
+const ratingLabels = { fully: "Fully", partially: "Partially", not_at_all: "Not at all", unsure: "Unsure" };
+async function refreshReviews() {
+  const container = $("#review-summary");
+  try {
+    const data = await request("/api/feedback/summary");
+    container.replaceChildren(element("p", `${data.total} reviewed ${data.total === 1 ? "search" : "searches"}`));
+    for (const [rating, label] of Object.entries(ratingLabels)) container.append(element("p", `${label}: ${data.counts[rating]}`));
+    for (const item of data.recent) {
+      const entry = element("details");
+      entry.append(element("summary", `${ratingLabels[item.rating]} · ${item.question}`));
+      entry.append(element("p", new Date(item.recorded_at).toLocaleString()));
+      if (item.note) entry.append(element("p", item.note));
+      container.append(entry);
+    }
+  } catch {
+    container.replaceChildren(element("p", "Saved reviews unavailable. Reload to retry.", "error-panel"));
+  }
+}
+function reviewForm(data) {
+  const form = element("form", undefined, "review-form");
+  form.setAttribute("aria-label", "Review evidence coverage");
+  form.append(element("h3", "Does this evidence answer your question?"));
+  form.append(element("p", "How well did the evidence above answer your question?", "muted"));
+  if (!data.review_receipt) {
+    form.append(element("p", "Review storage is unavailable. Search again after local storage is restored.", "error-panel"));
+    return form;
+  }
+  const label = element("label", "Evidence coverage");
+  const select = element("select"); select.required = true;
+  const placeholder = element("option", "Choose an assessment…"); placeholder.value = ""; select.append(placeholder);
+  for (const [rating, text] of Object.entries(ratingLabels)) {
+    const option = element("option", text); option.value = rating; select.append(option);
+  }
+  label.append(select); form.append(label);
+  const noteDetails = element("details"); noteDetails.append(element("summary", "Add a note (optional)"));
+  const noteLabel = element("label", "What is missing or useful?");
+  const note = element("textarea"); note.rows = 2; note.maxLength = 2000; noteLabel.append(note); noteDetails.append(noteLabel); form.append(noteDetails);
+  form.append(element("p", "Saves your question, assessment, note and source references locally, outside GitHub. No PDF text is copied.", "muted"));
+  const save = element("button", "Save review"); save.type = "submit";
+  const message = element("p"); message.setAttribute("role", "status"); message.setAttribute("aria-live", "polite");
+  form.append(save, message);
+  form.addEventListener("input", () => { message.textContent = "Changes not saved."; });
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault(); if (save.disabled) return;
+    save.disabled = true; select.disabled = true; note.disabled = true; message.textContent = "Saving review…";
+    message.classList.remove("error-panel");
+    try {
+      const receipt = await request("/api/feedback", { method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ receipt: data.review_receipt, rating: select.value, note: note.value }) });
+      if (!receipt.saved) throw new Error("The review was not saved.");
+      message.textContent = `Saved locally: ${ratingLabels[select.value]}. You can change and save this review again.`;
+      await refreshReviews();
+    } catch (error) {
+      message.classList.add("error-panel");
+      message.textContent = `Review not saved. ${error.message} Your choices are still here; retry.`;
+      const reference = await errorReference(error, "feedback");
+      message.append(document.createTextNode(` ${reference}`));
+    } finally { save.disabled = false; select.disabled = false; note.disabled = false; }
+  });
+  return form;
+}
 async function runSearch() {
   const text = question.value.trim();
   if (!text || state.busy || !state.ready) return;
@@ -128,6 +189,7 @@ async function runSearch() {
     response.append(element("p", `${sourceLabel} · ${ranking === "context" ? "Experimental ranking" : ranking === "baseline" ? "Original short passages" : "Standard search"}`, "response-notice"));
     response.append(element("p", data.notice, data.results.length ? "response-notice" : "empty-result"));
     data.results.forEach((result) => response.append(resultCard(result)));
+    response.append(reviewForm(data));
     announce(data.results.length ? "Search complete. Check the source assumptions and surrounding page before drawing conclusions." : "No keyword matches. Try different wording or another source.");
   } catch (error) {
     if (generation !== state.generation || error.name === "AbortError") return;
@@ -179,3 +241,4 @@ async function initialize() {
   }
 }
 initialize();
+refreshReviews();

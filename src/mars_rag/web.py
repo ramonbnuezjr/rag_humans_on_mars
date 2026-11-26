@@ -5,10 +5,12 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
 from pathlib import Path
 import re
+import sqlite3
 from urllib.parse import quote, urlsplit
 
 from .index import load_index
 from .error_log import ErrorLog, OPERATIONS, CATEGORIES
+from .feedback import FeedbackStore
 from .retrieve import indexed_source_ids, search
 
 
@@ -71,6 +73,7 @@ def search_response(root, payload):
 def make_server(root, port=8765):
     root = Path(root).resolve()
     error_log = ErrorLog(root)
+    feedback = FeedbackStore(root)
 
     class Handler(BaseHTTPRequestHandler):
         def log_message(self, *_args):
@@ -106,7 +109,7 @@ def make_server(root, port=8765):
         def send_json(self, status, value):
             if status >= 400 and urlsplit(self.path).path != "/api/ui-errors":
                 path = urlsplit(self.path).path
-                operation = "search" if path == "/api/search" else "collection" if path == "/api/collection" else "pdf" if path.endswith("/pdf") else "request"
+                operation = "feedback" if path.startswith("/api/feedback") else "search" if path == "/api/search" else "collection" if path == "/api/collection" else "pdf" if path.endswith("/pdf") else "request"
                 error_id, saved = error_log.record(operation, "http_error", status)
                 value = dict(value, error_id=error_id, logged=saved)
             self.send_body(status, json.dumps(value, ensure_ascii=False).encode("utf-8"), "application/json; charset=utf-8")
@@ -124,6 +127,8 @@ def make_server(root, port=8765):
                     self.send_body(200, (ASSETS / name).read_bytes(), content_type)
                 elif path == "/api/collection":
                     self.send_json(200, collection(root))
+                elif path == "/api/feedback/summary":
+                    self.send_json(200, feedback.summary())
                 elif re.fullmatch(r"/api/sources/[A-Za-z0-9_-]+/pdf", path):
                     sid = path.split("/")[3]
                     source = source_records(root).get(sid)
@@ -142,7 +147,7 @@ def make_server(root, port=8765):
                                    "inline; filename*=UTF-8''" + quote(file.name, safe=""))
                 else:
                     self.send_json(404, {"error": "Not found."})
-            except (OSError, ValueError, KeyError):
+            except (OSError, ValueError, KeyError, sqlite3.Error):
                 self.send_json(503, {"error": "The local collection is unavailable. Check the project setup and source indexes."})
             except Exception:
                 self.send_json(500, {"error": "An unexpected local application error occurred."})
@@ -151,7 +156,7 @@ def make_server(root, port=8765):
             if not self.allowed():
                 return
             path = urlsplit(self.path).path
-            if path not in {"/api/search", "/api/ui-errors"}:
+            if path not in {"/api/search", "/api/ui-errors", "/api/feedback"}:
                 self.send_json(404, {"error": "Not found."})
                 return
             if self.headers.get_content_type() != "application/json":
@@ -159,10 +164,13 @@ def make_server(root, port=8765):
                 return
             try:
                 size = int(self.headers.get("Content-Length", "0"))
-                if not 0 < size <= 16000:
+                if not 0 < size <= (32000 if path == "/api/feedback" else 16000):
                     self.send_json(413, {"error": "Search request is too large or empty."})
                     return
                 payload = json.loads(self.rfile.read(size).decode("utf-8"))
+                if path == "/api/feedback":
+                    self.send_json(200, feedback.save(payload))
+                    return
                 if path == "/api/ui-errors":
                     if (not isinstance(payload, dict) or set(payload) != {"operation", "category"}
                             or not isinstance(payload["operation"], str) or payload["operation"] not in OPERATIONS
@@ -172,11 +180,16 @@ def make_server(root, port=8765):
                     self.send_json(200, {"error_id": error_id, "logged": saved})
                     return
                 response = search_response(root, payload)
+                try:
+                    response["review_receipt"] = feedback.receipt(response, payload.get("source_id", "all"))
+                except (OSError, sqlite3.Error):
+                    # A feedback-storage problem must not hide valid retrieved evidence.
+                    response["review_receipt"] = None
                 self.send_json(200, response)
             except (ValueError, UnicodeError) as error:
                 self.send_json(400, {"error": str(error)})
-            except (OSError, KeyError):
-                self.send_json(503, {"error": "Search could not read a verified index. Check the project setup."})
+            except (OSError, KeyError, sqlite3.Error):
+                self.send_json(503, {"error": "Feedback could not be saved. Your review is still in the form; retry when local storage is available." if path == "/api/feedback" else "Search could not read a verified index. Check the project setup."})
             except Exception:
                 self.send_json(500, {"error": "An unexpected local application error occurred."})
 
